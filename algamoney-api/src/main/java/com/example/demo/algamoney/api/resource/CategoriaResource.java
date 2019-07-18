@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,21 +40,18 @@ public class CategoriaResource {
 		private CategoriaService categoriaService;
 		
 		@CrossOrigin(maxAge = 10, origins = "http://localhost:8000")
-		@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA') and #oauth2.hasScope('read')")
 		@GetMapping("/listar")
 		public List<Categoria> listar(){
 			return categoriaRepo.findAll();
 		}
 		
 		@GetMapping("/listar/{codigo}")
-		@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA') and #oauth2.hasScope('read')")
 		public ResponseEntity<Categoria> findById(@PathVariable Long codigo) {
 				Categoria categoria = categoriaRepo.findOne(codigo);
 				return categoria != null ? ResponseEntity.ok(categoria):ResponseEntity.notFound().build();
 		}
 		
 		@PostMapping("/cadastrar")
-		@PreAuthorize("hasAuthority('ROLE_CADASTRAR_CATEGORIA')and #oauth2.hasScope('write')")
 		public ResponseEntity <Categoria> criar(@Valid @RequestBody Categoria categoria, HttpServletResponse response){
 			Categoria categoriaSalva = categoriaRepo.save(categoria);
 			
