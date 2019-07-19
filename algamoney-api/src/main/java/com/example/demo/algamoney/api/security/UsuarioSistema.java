@@ -1,4 +1,4 @@
-package com.example.demo.algamoney.api.security.Util;
+package com.example.demo.algamoney.api.security;
 
 import java.util.Collection;
 
