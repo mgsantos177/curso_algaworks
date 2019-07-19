@@ -1,4 +1,4 @@
-package com.example.demo.algamoney.api.config.property;
+ 	package com.example.demo.algamoney.api.config.property;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -13,7 +13,7 @@ public class AlgamoneyApiProperty {
 	}
 
 
-
+ 
 	public void setOriginPermitida(String originPermitida) {
 		this.originPermitida = originPermitida;
 	}
